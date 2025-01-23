@@ -16,12 +16,7 @@ public class UserService {
             while((line = userFileReader.readLine()) != null && index < users.length) {
                 String[] fields = line.split(",");
                 if (fields.length == 3) {
-                    String username = fields[0];
-                    String password = fields[1];
-                    String name = fields[2];
-
-                    users[index] = new User(username, password, name);
-                    index++;
+                    users[index++] = new User(fields[0], fields[1], fields[2]);
                 }
             }
         } catch (FileNotFoundException e) {
@@ -54,14 +49,12 @@ public class UserService {
 
     public String askForUsername() {
         System.out.println("Enter your email: ");
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
+        return new Scanner(System.in).nextLine();
     }
 
     public String askForPassword() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your password: ");
-        return scanner.nextLine();
+        return new Scanner(System.in).nextLine();
     }
 
     public String getUsersName(String username) {
